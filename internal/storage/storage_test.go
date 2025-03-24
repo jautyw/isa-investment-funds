@@ -26,8 +26,6 @@ func setupDB(ctx context.Context) (*gorm.DB, func(), testcontainers.Container) {
 		Port:     "9920",
 	}
 
-	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=%s", cfg.Host, cfg.User, cfg.Password, cfg.Database, cfg.Port, cfg.SSLMode)
-
 	req := testcontainers.ContainerRequest{
 		Image:        "postgres:13",
 		ExposedPorts: []string{fmt.Sprintf("%s/tcp", cfg.Port)},
@@ -46,6 +44,17 @@ func setupDB(ctx context.Context) (*gorm.DB, func(), testcontainers.Container) {
 	if err != nil {
 		log.Fatalf("Could not start container: %s", err)
 	}
+
+	host, err := container.Host(ctx)
+	if err != nil {
+		log.Fatalf("Could not get container host: %v", err)
+	}
+	port, err := container.MappedPort(ctx, "9920")
+	if err != nil {
+		log.Fatalf("Could not get container port: %v", err)
+	}
+
+	dsn := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=%s", host, port.Port(), cfg.User, cfg.Password, cfg.Database, cfg.SSLMode)
 
 	db, err := gorm.Open(pg.Open(dsn), &gorm.Config{})
 	if err != nil {
