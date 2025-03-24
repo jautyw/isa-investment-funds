@@ -35,3 +35,9 @@ Enhancements:
 - Review of error handling when publishing events
 - More sophisticated logging and error wrapping
 - Sorting, filtering and pagination of responses.
+
+How to run: 
+
+`docker compose up`
+
+`go run cmd/server/main.go`

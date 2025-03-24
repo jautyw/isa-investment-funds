@@ -11,7 +11,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     restart: always
-#
+# Comment out when running service locally
 #  api:
 #    container_name: isa-investment-funds
 #    build:
