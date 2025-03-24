@@ -1,0 +1,8 @@
+Host: "postgres"
+User: "user"
+Password: "password"
+Database: "investments"
+FundTableName: "funds"
+OrderTableName: "orders"
+Port: "9920"
+SSLMode: "disable"
