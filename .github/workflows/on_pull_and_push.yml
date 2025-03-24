@@ -1,34 +1,28 @@
-name: Go
+name: Go Setup
 
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-
 jobs:
-
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Set up Go
-        uses: actions/setup-go@v3
+      - uses: actions/checkout@v4
+      - name: Install Go
+        uses: actions/setup-go@v5
         with:
           go-version: 1.23
-
+      - name: lint
+        uses: golangci/golangci-lint-action@v4.0.0
+        with:
+          version: 1.56.2
+          skip-build-cache: true
+          skip-pkg-cache: true
+      - name: Install dependencies
+        run: go get ./...
       - name: Build
         run: go build -v ./...
-
-      - name: Install golangci-lint
-        run: |
-          curl -sSfL https://github.com/golangci/golangci-lint/releases/download/v1.47.0/golangci-lint-1.47.0-linux-amd64.tar.gz | tar -xzv -C /tmp
-          sudo mv /tmp/golangci-lint-*/golangci-lint /usr/local/bin/
-
-      - name: Run golangci-lint
-        run: |
-          golangci-lint run --timeout=5m --skip-dirs "/pkg/mod/"
-
       - name: Test
         run: go test -v ./...

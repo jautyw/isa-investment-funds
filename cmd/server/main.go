@@ -54,7 +54,6 @@ func main() {
 }
 
 func SeedDatabase(db *gorm.DB) error {
-
 	if err := db.Exec(fmt.Sprintf("DELETE FROM %s", "funds")).Error; err != nil {
 		return fmt.Errorf("failed to clear table %s: %w", "funds", err)
 	}
@@ -62,10 +61,6 @@ func SeedDatabase(db *gorm.DB) error {
 	if err := db.Exec(fmt.Sprintf("DELETE FROM %s", "orders")).Error; err != nil {
 		return fmt.Errorf("failed to clear table %s: %w", "orders", err)
 	}
-
-	//if err := db.Exec(fmt.Sprintf("ALTER TABLE funds DROP COLUMN IF EXISTS product_type")).Error; err != nil {
-	//	return fmt.Errorf("failed to clear table %s: %w", "orders", err)
-	//}
 
 	funds := []schema.Funds{
 		{
