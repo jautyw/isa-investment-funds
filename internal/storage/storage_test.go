@@ -3,6 +3,7 @@ package storage_test
 import (
 	"context"
 	"fmt"
+	"github.com/docker/go-connections/nat"
 	"github.com/jautyw/isa-investment-funds/config"
 	"github.com/jautyw/isa-investment-funds/internal/schema"
 	"github.com/jautyw/isa-investment-funds/internal/storage"
@@ -34,7 +35,7 @@ func setupDB(ctx context.Context) (*gorm.DB, func(), testcontainers.Container) {
 			"POSTGRES_PASSWORD": cfg.Password,
 			"POSTGRES_DB":       cfg.Database,
 		},
-		WaitingFor: wait.ForLog("database system is ready to accept connections").WithStartupTimeout(10 * time.Second),
+		WaitingFor: wait.ForListeningPort(nat.Port(fmt.Sprintf("%s/tcp", cfg.Port))).WithStartupTimeout(30 * time.Second),
 	}
 
 	container, err := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
