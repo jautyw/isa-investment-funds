@@ -18,8 +18,6 @@ import (
 )
 
 func setupDB(ctx context.Context) (*gorm.DB, func(), testcontainers.Container) {
-	ctx = context.Background()
-
 	cfg := config.Config{
 		Host:     "localhost",
 		User:     "user",

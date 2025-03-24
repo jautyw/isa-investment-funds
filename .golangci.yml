@@ -1,0 +1,10 @@
+linters-settings:
+  staticcheck:
+    checks: ["all"]  # Enable all staticcheck rules
+
+issues:
+  exclude-dirs:
+    - "/pkg/mod/"
+
+run:
+  timeout: 5m  # Increase timeout if needed
