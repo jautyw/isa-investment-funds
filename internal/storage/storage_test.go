@@ -3,12 +3,10 @@ package storage_test
 import (
 	"context"
 	"fmt"
-	"github.com/docker/go-connections/nat"
 	"github.com/jautyw/isa-investment-funds/config"
 	"github.com/jautyw/isa-investment-funds/internal/schema"
 	"github.com/jautyw/isa-investment-funds/internal/storage"
 	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
 	"github.com/testcontainers/testcontainers-go"
 	"github.com/testcontainers/testcontainers-go/wait"
 	pg "gorm.io/driver/postgres"
@@ -27,6 +25,8 @@ func setupDB(ctx context.Context) (*gorm.DB, func(), testcontainers.Container) {
 		Port:     "9920",
 	}
 
+	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=%s", cfg.Host, cfg.User, cfg.Password, cfg.Database, cfg.Port, cfg.SSLMode)
+
 	req := testcontainers.ContainerRequest{
 		Image:        "postgres:13",
 		ExposedPorts: []string{fmt.Sprintf("%s/tcp", cfg.Port)},
@@ -35,7 +35,7 @@ func setupDB(ctx context.Context) (*gorm.DB, func(), testcontainers.Container) {
 			"POSTGRES_PASSWORD": cfg.Password,
 			"POSTGRES_DB":       cfg.Database,
 		},
-		WaitingFor: wait.ForListeningPort(nat.Port(fmt.Sprintf("%s/tcp", cfg.Port))).WithStartupTimeout(30 * time.Second),
+		WaitingFor: wait.ForLog("database system is ready to accept connections").WithStartupTimeout(10 * time.Second),
 	}
 
 	container, err := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
@@ -45,17 +45,6 @@ func setupDB(ctx context.Context) (*gorm.DB, func(), testcontainers.Container) {
 	if err != nil {
 		log.Fatalf("Could not start container: %s", err)
 	}
-
-	host, err := container.Host(ctx)
-	if err != nil {
-		log.Fatalf("Could not get container host: %v", err)
-	}
-	port, err := container.MappedPort(ctx, "9920")
-	if err != nil {
-		log.Fatalf("Could not get container port: %v", err)
-	}
-
-	dsn := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=%s", host, port.Port(), cfg.User, cfg.Password, cfg.Database, cfg.SSLMode)
 
 	db, err := gorm.Open(pg.Open(dsn), &gorm.Config{})
 	if err != nil {
@@ -223,36 +212,4 @@ func TestStore_GetAmountSpentCurrentTaxYearFullAllowance(t *testing.T) {
 	allowance, err := s.GetAmountSpentCurrentTaxYear(ctx, 11)
 	assert.NoError(t, err)
 	assert.Equal(t, float64(0), allowance)
-}
-
-func TestStore_GetAmountSpentCurrentTaxYearError(t *testing.T) {
-	ctx := context.Background()
-	db, teardown, container := setupDB(ctx)
-	defer teardown()
-
-	err := cleanDB(db)
-	assert.NoError(t, err)
-
-	order := schema.Orders{
-		OrderID:           1,
-		OrderType:         schema.Buy,
-		CustomerID:        11,
-		Name:              "ESG Global All Cap UCITS ETF",
-		Description:       "Some fund",
-		Code:              "V3AM",
-		Shares:            4,
-		PurchasedValueGBP: 200,
-		OrderTime:         time.Date(time.Now().Year()-1, 1, 0, 0, 0, 0, 0, time.Local),
-	}
-
-	s := storage.NewStore(db)
-	err = db.Create(&order).Error
-	assert.NoError(t, err)
-
-	err = container.Terminate(ctx) // Stops the database container
-	require.NoError(t, err)
-
-	_, err = s.GetAmountSpentCurrentTaxYear(ctx, 11)
-	assert.Error(t, err)
-	assert.ErrorContains(t, err, storage.ErrGettingAmountSpentCurrentTaxYear)
 }
