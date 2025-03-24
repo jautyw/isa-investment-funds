@@ -20,6 +20,7 @@ jobs:
           version: v1.56.2
           skip-build-cache: true
           skip-pkg-cache: true
+          args: --skip-dirs "vendor|third_party" --skip-files "generated_.*\\.go"
       - name: Install dependencies
         run: go get ./...
       - name: Build
