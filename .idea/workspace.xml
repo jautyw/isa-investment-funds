@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="87e71f67-351a-4627-a97c-feb4cf9a0505" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/on_pull_and_push.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/on_pull_and_push.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="GOROOT" url="file://$PROJECT_DIR$/../pkg/mod/golang.org/toolchain@v0.0.1-go1.23.4.darwin-amd64" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 5
+}]]></component>
+  <component name="ProjectId" id="2uklmBlA9hd3Qlo8EfXjm3tbQ0P" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Go Test.TestHandler_GetFundsError in isa-investment-funds/internal/transport.executor": "Debug",
+    "Go Test.TestHandler_GetInvestmentOverview in isa-investment-funds/internal/transport.executor": "Run",
+    "Go Test.TestHandler_GetInvestmentOverviewBadRequestError in isa-investment-funds/internal/transport.executor": "Run",
+    "Go Test.TestHandler_GetInvestmentOverviewInternalServerError in isa-investment-funds/internal/transport.executor": "Run",
+    "Go Test.TestService_GetFunds in isa-investment-funds/internal/service.executor": "Run",
+    "Go Test.TestService_GetFundsError in isa-investment-funds/internal/service.executor": "Run",
+    "Go Test.TestService_GetFundsInvalidCustomer in isa-investment-funds/internal/service.executor": "Run",
+    "Go Test.TestService_GetInvestmentISAAllowanceError in isa-investment-funds/internal/service.executor": "Run",
+    "Go Test.TestService_GetInvestmentOverview in isa-investment-funds/internal/service.executor": "Run",
+    "Go Test.TestService_GetInvestmentOverviewError in isa-investment-funds/internal/service.executor": "Run",
+    "Go Test.go test isa-investment-funds/internal/transport.executor": "Coverage",
+    "Makefile Target.run-docker.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.automatic.dependencies.download": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "git-widget-placeholder": "main",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "last_opened_file_path": "/Users/johnwebster/go/isa-investment-funds",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm"
+  }
+}]]></component>
+  <component name="RunManager" selected="Makefile Target.run-docker">
+    <configuration name="TestService_GetFundsError in isa-investment-funds/internal/service" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="isa-investment-funds" />
+      <working_directory value="$PROJECT_DIR$/internal/service" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="isa-investment-funds/internal/service" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestService_GetFundsError\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestService_GetInvestmentISAAllowanceError in isa-investment-funds/internal/service" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="isa-investment-funds" />
+      <working_directory value="$PROJECT_DIR$/internal/service" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="isa-investment-funds/internal/service" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestService_GetInvestmentISAAllowanceError\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestService_GetInvestmentOverview in isa-investment-funds/internal/service" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="isa-investment-funds" />
+      <working_directory value="$PROJECT_DIR$/internal/service" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="isa-investment-funds/internal/service" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestService_GetInvestmentOverview\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestService_GetInvestmentOverviewError in isa-investment-funds/internal/service" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="isa-investment-funds" />
+      <working_directory value="$PROJECT_DIR$/internal/service" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="isa-investment-funds/internal/service" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestService_GetInvestmentOverviewError\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="run-docker" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
+      <makefile filename="$PROJECT_DIR$/Makefile" target="run-docker" workingDirectory="" arguments="">
+        <envs />
+      </makefile>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Makefile Target.run-docker" />
+        <item itemvalue="Go Test.TestService_GetInvestmentOverviewError in isa-investment-funds/internal/service" />
+        <item itemvalue="Go Test.TestService_GetInvestmentISAAllowanceError in isa-investment-funds/internal/service" />
+        <item itemvalue="Go Test.TestService_GetInvestmentOverview in isa-investment-funds/internal/service" />
+        <item itemvalue="Go Test.TestService_GetFundsError in isa-investment-funds/internal/service" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-gosdk-266795519c66-911b893a1778-org.jetbrains.plugins.go.sharedIndexes.bundled-GO-233.13135.104" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VgoProject">
+    <settings-migrated>true</settings-migrated>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/internal/transport/getInvestmentOverview.go</url>
+          <line>12</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/isa_investment_funds$go_test_isa_investment_funds_internal_transport.out" NAME="go test isa-investment-funds/internal/transport Coverage Results" MODIFIED="1742801910230" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+</project>
