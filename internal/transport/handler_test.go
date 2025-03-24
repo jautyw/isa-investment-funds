@@ -4,18 +4,17 @@ import (
 	"encoding/json"
 	"github.com/golang/mock/gomock"
 	"github.com/gorilla/mux"
+	"github.com/jautyw/isa-investment-funds/internal/service"
+	"github.com/jautyw/isa-investment-funds/internal/transport"
+	mocks "github.com/jautyw/isa-investment-funds/internal/transport/mocks"
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/assert"
 	"go.uber.org/zap"
 	"io"
-	"isa-investment-funds/internal/service"
-	"isa-investment-funds/internal/transport"
 	"net/http"
 	"net/http/httptest"
 	"testing"
 	"time"
-
-	mocks "isa-investment-funds/internal/transport/mocks"
 )
 
 func TestHandler_NewHandler(t *testing.T) {

@@ -1,11 +1,11 @@
-//go:generate mockgen -destination=./mocks/handler_mock.go -package transport isa-investment-funds/internal/transport Service
+//go:generate mockgen -destination=./mocks/handler_mock.go -package transport github.com/jautyw/isa-investment-funds/internal/transport Service
 package transport
 
 import (
 	"context"
 	"github.com/gorilla/mux"
+	"github.com/jautyw/isa-investment-funds/internal/service"
 	"go.uber.org/zap"
-	"isa-investment-funds/internal/service"
 	"log"
 	"net/http"
 )

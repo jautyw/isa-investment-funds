@@ -3,6 +3,7 @@ package storage
 import (
 	"context"
 	"database/sql"
+	"github.com/jautyw/isa-investment-funds/internal/schema"
 	"github.com/pkg/errors"
 	"gorm.io/gorm"
 	"time"
@@ -23,9 +24,9 @@ const (
 	tableFunds  = "funds"
 	tableOrders = "orders"
 
-	errGettingFunds                     = "error getting funds from db"
-	errGettingInvestmentOverview        = "error getting investment overview from db"
-	errGettingAmountSpentCurrentTaxYear = "error getting the amount spent in the current tax year"
+	ErrGettingFunds                     = "error getting funds from db"
+	ErrGettingInvestmentOverview        = "error getting investment overview from db"
+	ErrGettingAmountSpentCurrentTaxYear = "error getting the amount spent in the current tax year"
 )
 
 var (
@@ -34,12 +35,13 @@ var (
 )
 
 func (s *Store) GetFunds(ctx context.Context, customerType string) (*Funds, error) {
-	var funds *Funds
-	_, err := s.db.WithContext(ctx).Table(tableFunds).Where("customer_type = ?", customerType).Find(&funds.Funds).Rows()
+	var funds []Fund
+	err := s.db.WithContext(ctx).Table(tableFunds).Where("customer_type = ?", customerType).Find(&funds).Error
 	if err != nil {
-		return nil, errors.Wrap(err, errGettingFunds)
+		return nil, errors.Wrap(err, ErrGettingFunds)
 	}
-	return funds, nil
+
+	return &Funds{Funds: funds}, nil
 }
 
 func (s *Store) GetInvestmentOverview(ctx context.Context, customerID int) ([]InvestmentOverview, error) {
@@ -59,7 +61,7 @@ func (s *Store) GetInvestmentOverview(ctx context.Context, customerID int) ([]In
 		Having("SUM(CASE WHEN order_type = 'buy' THEN total_shares ELSE -total_shares END) > 0"). // Ensures only investments with positive net shares are included
 		Scan(&investmentOverview).Error
 	if err != nil {
-		return nil, errors.Wrap(err, errGettingInvestmentOverview)
+		return nil, errors.Wrap(err, ErrGettingInvestmentOverview)
 	}
 
 	return investmentOverview, nil
@@ -67,9 +69,9 @@ func (s *Store) GetInvestmentOverview(ctx context.Context, customerID int) ([]In
 
 func (s *Store) GetAmountSpentCurrentTaxYear(ctx context.Context, customerID int) (float64, error) {
 	var allowance sql.NullFloat64
-	err := s.db.WithContext(ctx).Table(tableOrders).Select("SUM(purchased_value_gbp)").Where("customer_id = ?", customerID).Where("order_time BETWEEN ? AND ?", lastYearApril6, time.Now()).Find(&allowance).Error
+	err := s.db.WithContext(ctx).Table(tableOrders).Select("SUM(purchased_value_gbp)").Where("customer_id = ?", customerID).Where("order_type = ?", schema.Buy).Where("order_time BETWEEN ? AND ?", lastYearApril6, time.Now()).Find(&allowance).Error
 	if err != nil {
-		return 0, errors.Wrap(err, errGettingAmountSpentCurrentTaxYear)
+		return 0, errors.Wrap(err, ErrGettingAmountSpentCurrentTaxYear)
 	}
 
 	if !allowance.Valid {

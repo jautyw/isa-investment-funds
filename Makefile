@@ -3,9 +3,9 @@ run:
 mod:
 	go mod tidy
 lint-install:
- 	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.56.2
+ 	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.64.8
 lint:
-	golangci-lint run --timeout=5m --skip-dirs "/pkg/mod/"
+	golangci-lint run --timeout=5m
 run-docker:
 	docker compose up
 stop-docker:

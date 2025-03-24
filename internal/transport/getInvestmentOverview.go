@@ -13,8 +13,9 @@ func (h *Handler) GetInvestmentOverview(w http.ResponseWriter, r *http.Request) 
 	ctx := r.Context()
 	w.Header().Set("Content-Type", "application/json")
 
-	vars := mux.Vars(r)
+	h.Logger.Info("GetInvestmentOverview request made")
 
+	vars := mux.Vars(r)
 	customerID, exists := vars["customer_id"]
 	if !exists || customerID == "" {
 		h.Logger.Error("customer_id is missing")
@@ -23,7 +24,7 @@ func (h *Handler) GetInvestmentOverview(w http.ResponseWriter, r *http.Request) 
 	}
 
 	customerIDint, err := strconv.Atoi(customerID)
-	if err != nil {
+	if err != nil || customerIDint <= 0 {
 		h.Logger.Error(fmt.Sprintf("%s customer_id is invalid", customerID))
 		http.Error(w, fmt.Sprintf("%s customer_id is invalid", customerID), http.StatusBadRequest)
 		return

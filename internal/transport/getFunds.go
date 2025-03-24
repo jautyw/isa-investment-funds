@@ -12,6 +12,8 @@ func (h *Handler) GetFunds(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	w.Header().Add("Content-Type", "application/json")
 
+	h.Logger.Info("GetFunds request made")
+
 	vars := mux.Vars(r)
 	customerType := vars["customer_type"]
 	if customerType == "" {

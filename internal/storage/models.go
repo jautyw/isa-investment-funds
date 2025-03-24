@@ -1,7 +1,7 @@
 package storage
 
 import (
-	"isa-investment-funds/internal/schema"
+	"github.com/jautyw/isa-investment-funds/internal/schema"
 	"time"
 )
 

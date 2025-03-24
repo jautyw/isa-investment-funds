@@ -22,7 +22,7 @@ type Funds struct {
 	ID           uint         `gorm:"primaryKey"`
 	Name         string       `gorm:"column:name;not null"`
 	Description  string       `gorm:"column:description"`
-	Code         string       `gorm:"column:code;unique;not null"`
+	Code         string       `gorm:"column:code;not null"`
 	AmountGBP    float64      `gorm:"column:amount_gbp;not null"`
 	CustomerType CustomerType `gorm:"column:customer_type;not null"`
 	RiskScore    RiskScore    `gorm:"column:risk_score;not null;type:varchar(50)"`

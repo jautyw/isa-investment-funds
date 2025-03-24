@@ -2,12 +2,12 @@ package service_test
 
 import (
 	"context"
+	"errors"
 	"github.com/golang/mock/gomock"
-	"github.com/pkg/errors"
+	"github.com/jautyw/isa-investment-funds/internal/service"
+	mocks "github.com/jautyw/isa-investment-funds/internal/service/mocks"
+	"github.com/jautyw/isa-investment-funds/internal/storage"
 	"github.com/stretchr/testify/assert"
-	"isa-investment-funds/internal/service"
-	mocks "isa-investment-funds/internal/service/mocks"
-	"isa-investment-funds/internal/storage"
 	"testing"
 	"time"
 )

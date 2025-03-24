@@ -2,18 +2,19 @@ package main
 
 import (
 	"fmt"
-	"github.com/gorilla/mux"
 	"gorm.io/driver/postgres"
-	"gorm.io/gorm"
-	"isa-investment-funds/internal/logger"
-	"isa-investment-funds/internal/schema"
-	"isa-investment-funds/internal/service"
-	"isa-investment-funds/internal/storage"
-	"isa-investment-funds/internal/transport"
 	"log"
 	"time"
 
-	"isa-investment-funds/config"
+	"github.com/gorilla/mux"
+	"gorm.io/gorm"
+
+	"github.com/jautyw/isa-investment-funds/config"
+	"github.com/jautyw/isa-investment-funds/internal/logger"
+	"github.com/jautyw/isa-investment-funds/internal/schema"
+	"github.com/jautyw/isa-investment-funds/internal/service"
+	"github.com/jautyw/isa-investment-funds/internal/storage"
+	"github.com/jautyw/isa-investment-funds/internal/transport"
 )
 
 func main() {
@@ -29,9 +30,6 @@ func main() {
 	if err != nil {
 		log.Fatalf("error opening postgres %v", err)
 	}
-	//
-	//if err := db.Exec(fmt.Sprintf("DROP DATABASE IF EXISTS %s", "investments")).Error; err != nil {
-	//}
 
 	// Run migrations to ensure the tables are created or updated
 	err = db.AutoMigrate(&schema.Funds{}, &schema.Orders{})
@@ -53,6 +51,7 @@ func main() {
 	t.HandleRequests(r)
 }
 
+// SeedDatabase exists purely for initial and subsequent local testing.
 func SeedDatabase(db *gorm.DB) error {
 	if err := db.Exec(fmt.Sprintf("DELETE FROM %s", "funds")).Error; err != nil {
 		return fmt.Errorf("failed to clear table %s: %w", "funds", err)
@@ -83,6 +82,26 @@ func SeedDatabase(db *gorm.DB) error {
 			RiskScore:    schema.Medium,
 			LastUpdated:  time.Now(),
 		},
+		{
+			ID:           3,
+			Name:         "ESG Global All Cap UCITS ETF",
+			Description:  "Some fund",
+			Code:         "V3AM",
+			AmountGBP:    4.92,
+			CustomerType: schema.Workplace,
+			RiskScore:    schema.Medium,
+			LastUpdated:  time.Now(),
+		},
+		{
+			ID:           4,
+			Name:         "ESG Global All Cap UCITS ETF - (USD) Accumulating",
+			Description:  "Some fund",
+			Code:         "V3AB",
+			AmountGBP:    4.92,
+			CustomerType: schema.Workplace,
+			RiskScore:    schema.Medium,
+			LastUpdated:  time.Now(),
+		},
 	}
 
 	for _, fund := range funds {
@@ -96,7 +115,7 @@ func SeedDatabase(db *gorm.DB) error {
 			OrderID:           1,
 			OrderType:         schema.Buy,
 			CustomerID:        1,
-			Name:              "Some name",
+			Name:              "ESG Global All Cap UCITS ETF",
 			Description:       "Some fund",
 			Code:              "V3AM",
 			Shares:            100.0,
@@ -107,7 +126,29 @@ func SeedDatabase(db *gorm.DB) error {
 			OrderID:           2,
 			OrderType:         schema.Sell,
 			CustomerID:        1,
-			Name:              "Some name",
+			Name:              "ESG Global All Cap UCITS ETF",
+			Description:       "Some fund",
+			Code:              "V3AM",
+			Shares:            50.0,
+			PurchasedValueGBP: 246.0,
+			OrderTime:         time.Now(),
+		},
+		{
+			OrderID:           3,
+			OrderType:         schema.Buy,
+			CustomerID:        1,
+			Name:              "ESG Global All Cap UCITS ETF - (USD) Accumulating",
+			Description:       "Some fund",
+			Code:              "V3AB",
+			Shares:            100.0,
+			PurchasedValueGBP: 492.0,
+			OrderTime:         time.Now(),
+		},
+		{
+			OrderID:           4,
+			OrderType:         schema.Sell,
+			CustomerID:        1,
+			Name:              "ESG Global All Cap UCITS ETF - (USD) Accumulating",
 			Description:       "Some fund",
 			Code:              "V3AB",
 			Shares:            50.0,

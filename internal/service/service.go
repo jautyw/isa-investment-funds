@@ -1,12 +1,12 @@
-//go:generate mockgen -destination=./mocks/service_mock.go -package service isa-investment-funds/internal/service Store
+//go:generate mockgen -destination=./mocks/service_mock.go -package service github.com/jautyw/isa-investment-funds/internal/service Store
 package service
 
 import (
 	"context"
 	"fmt"
+	"github.com/jautyw/isa-investment-funds/internal/schema"
+	"github.com/jautyw/isa-investment-funds/internal/storage"
 	"github.com/pkg/errors"
-	"isa-investment-funds/internal/schema"
-	"isa-investment-funds/internal/storage"
 )
 
 type Service struct {
@@ -68,6 +68,7 @@ func (s Service) GetFunds(ctx context.Context, customerType string) (*Funds, err
 func (s Service) GetInvestmentOverview(ctx context.Context, customerID int) (*Overview, error) {
 	// At the moment we only expect a customer to have invested a single type of fund, however, we should keep in mind
 	// that we probably want to support multiple funds in the future.
+	// TODO We should also check whether a user exists here so that we don't just return an empty array.
 
 	investmentSummaries, err := s.store.GetInvestmentOverview(ctx, customerID)
 	if err != nil {

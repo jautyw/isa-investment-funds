@@ -4,12 +4,14 @@ type Event struct {
 	broker Broker
 }
 
-func NewStore(broker Broker) *Event {
+// NewEvents represents a new instance of Events
+func NewEvents(broker Broker) *Event {
 	return &Event{
 		broker: broker,
 	}
 }
 
+// Broker concerns a collection of methods that concern message queues
 type Broker interface {
 	Publish()
 }
