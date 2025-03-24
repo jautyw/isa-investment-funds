@@ -2,9 +2,10 @@ package config
 
 import (
 	"fmt"
-	"gopkg.in/yaml.v2"
 	"log"
 	"os"
+
+	yml "gopkg.in/yaml.v2"
 )
 
 const (
@@ -28,7 +29,7 @@ func LoadConfig() (*Config, error) {
 	if err != nil {
 		return nil, fmt.Errorf("error_reading %w", err)
 	}
-	err = yaml.Unmarshal(file, &cfg)
+	err = yml.Unmarshal(file, &cfg)
 	if err != nil {
 		return nil, fmt.Errorf("error_unmarshalling_config %w", err)
 	}
