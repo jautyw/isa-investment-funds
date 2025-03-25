@@ -1,21 +1,23 @@
-ISA-INVESTMENTS-FUNDS
+# ISA-INVESTMENTS-FUNDS
 
 [![Build Status][actions-badge]][actions-url]
 
-ISA Investment Funds is an API that providers functionality relating to the following:
+## Introduction
+
+### ISA Investment Funds is an API that providers functionality relating to the following:
 
 - Investments a customer can buy within an ISA
 - Information relating to a customer's current investment position
 - Information relating to a customer's annual tax-free allowance
-WIP - Purchase or sale of investments
+- Purchase or sale of investments (WIP)
 
-Scenarios:
+### Scenarios to consider:
 
 - User with £25000 to invest
 - Separation of Workplace/Retail customers
 - Strictly forbid user from purchasing more than a single product. (Apply in service layer)
 
-Out of scope:
+### Out of scope:
 
 - Creating of customer account (including KYC)
 - Authentication of the requester
@@ -25,7 +27,7 @@ Out of scope:
 - Configure a broker and trigger events for scenarios such as the above. (SMS, Email and push notifications when funds 
   are deposited/withdrawn/traded)
 
-Enhancements:
+### Enhancements:
 
 - Use OpenAPI for easier integration with clients
 - Review choice of HTTP router
@@ -37,7 +39,7 @@ Enhancements:
 - Sorting, filtering and pagination of responses.
 - More sophisticated error returns
 
-How to run: 
+## How to run: 
 
 Initialise the postgres instance by running the following command. `docker compose up`
 
