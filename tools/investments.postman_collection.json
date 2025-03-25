@@ -1,0 +1,50 @@
+{
+	"info": {
+		"_postman_id": "4379078c-87f2-45c9-88fe-23bddc1e142e",
+		"name": "investments",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21993909"
+	},
+	"item": [
+		{
+			"name": "getFunds/{customer_type}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/getFunds/retail",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"getFunds",
+						"retail"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getInvestmentOverview/{customer_id}}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/getInvestmentOverview/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"getInvestmentOverview",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

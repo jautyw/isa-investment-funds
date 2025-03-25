@@ -78,10 +78,6 @@ func cleanDB(db *gorm.DB) error {
 	return nil
 }
 
-func TestStoreSuite(t *testing.T) {
-
-}
-
 func TestStore_GetFunds(t *testing.T) {
 	ctx := context.Background()
 	db, teardown, _ := setupDB(ctx)

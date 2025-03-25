@@ -38,6 +38,13 @@ Enhancements:
 
 How to run: 
 
-`docker compose up`
+Initialise the postgres instance by running the following command. `docker compose up`
 
-`go run cmd/server/main.go`
+We can then run the service via the terminal by inputting the following: `go run cmd/server/main.go`
+
+For direction on how to make requests to the API, please see the postman collection in the `tools` directory. 
+
+Alternatively feel free to: `curl http://localhost:8080/getInvestmentOverview/1`
+
+`SeedDatabase()` populates the db with some initial data so you might want to modify should you consider expanding the functionality.
+
