@@ -18,6 +18,7 @@ const (
 	Workplace CustomerType = "workplace"
 )
 
+// Funds refers to the schema to be used for the funds table in postgres
 type Funds struct {
 	ID           uint         `gorm:"primaryKey"`
 	Name         string       `gorm:"column:name;not null"`
@@ -29,6 +30,7 @@ type Funds struct {
 	LastUpdated  time.Time    `gorm:"column:last_updated"`
 }
 
+// Funds Orders to the schema to be used for the orders table in postgres
 type Orders struct {
 	OrderID           uint      `gorm:"primaryKey"`
 	OrderType         OrderType `gorm:"column:order_type;not null;type:varchar(50)"`

@@ -35,6 +35,7 @@ Enhancements:
 - Review of error handling when publishing events
 - More sophisticated logging and error wrapping
 - Sorting, filtering and pagination of responses.
+- More sophisticated error returns
 
 How to run: 
 
